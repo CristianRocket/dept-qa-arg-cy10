@@ -24,11 +24,12 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('fillDateOfBirth', (day, month, year) => {
-    cy.get('[placeholder="DD"]').click().type(day);
-    cy.get('[placeholder="MM"]').click().type(month);
-    cy.get('[placeholder="YYYY"]').click().type(year);
-    cy.contains('Enter').click();
+Cypress.Commands.add('fillDateOfBirth', (value, type) => {
+    cy.get(value).click().type(type);
+    // cy.get('[placeholder="DD"]').click().type(day);
+    // cy.get('[placeholder="MM"]').click().type(month);
+    // cy.get('[placeholder="YYYY"]').click().type(year);
+    // cy.contains('Enter').click();
 });
 
 Cypress.Commands.add('doSearch', (value) => {
@@ -36,3 +37,10 @@ Cypress.Commands.add('doSearch', (value) => {
     cy.get('[placeholder="Begin typing to search"]').click();
     cy.get('[placeholder="Begin typing to search"]').type(value, { capsLock: true });
 });
+
+Cypress.Commands.add('doSearchMalts', (value) => {
+    cy.get('[class="navbar-component-module--search-icon--3lamn"] ').click();
+    cy.get('[placeholder="What are you looking for?"]').click();
+    cy.get('[placeholder="What are you looking for?"]').type(value, { capsLock: true });
+});
+
